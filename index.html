@@ -1,0 +1,444 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+		<style>
+			body {
+				margin: 0;
+				font-family: "Open Sans", sans-serif;
+			}
+			nav {
+				color: black;
+				text-align: right;
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				z-index: 3;
+			}
+			nav > .logo {
+				float: left;
+				padding: 20px;
+			}
+			nav > a {
+				color: white;
+				text-decoration: none;
+				display: inline-block;
+				padding: 20px;
+				border: 5px solid black;
+				border-top: 0;
+				border-right: 0;
+			}
+			nav > a:last-child {
+				background-color: green;
+				font-weight: bold;
+			}
+			.slideshow {
+				height: 90vh;
+				text-align: center;
+				position: relative;
+				width: 100%;
+				display: inline-block;
+				overflow: hidden;
+				top: 0; left: 0;
+				border-bottom: 5px solid black;
+				border-top: 5px solid black;
+			}
+			.slideshow > img {
+				position: absolute;
+				display: none;
+				height: 100vh;
+				opacity: 0;
+				transition: opacity 1s;
+				transform: translateX(-50%);
+				left: 50%;
+				vertical-align: top;
+			}
+			.slideshow > .showing {
+				display: inline-block;
+			}
+			.slideshow > .visible {
+				opacity: 1;
+			}
+			#intro-text {
+				width: calc(100% - 20px);
+				left: 0;
+				top: 0;
+				overflow: auto;
+				text-align: center;
+				background-color: rgba(255, 255, 255, 0.3);
+				padding: 10px;
+				text-align: center;
+			}
+			#intro-text > h1 {
+				font-size: 60px;
+				text-transform: uppercase;
+				letter-spacing: 4px;
+				margin: 5px 0;
+			}
+			#intro-text > p {
+				font-size: 24px;
+				border-radius: 10px;
+				font-weight: bold;
+				margin: 5px 0;
+				font-style: italic;
+			}
+			h2 {
+				text-decoration: underline;
+				font-size: 32px;
+				margin: 0;
+			}
+			#content {
+				margin: 20px;
+			}
+			.section {
+				margin: 20px 0;
+				font-size: 22px;
+			}
+			.blocks {
+				display: flex;
+				justify-content: space-between;
+			}
+			.block, .profile-block {
+				width: calc(25% - 40px);
+				text-align: center;
+				padding: 20px;
+				margin: 20px;
+				box-sizing: border-box;
+				
+			}
+			.block {
+				border: 5px solid black;
+				background-color: rgb(105, 191, 248);
+			}
+			.profile-block img {
+				width: 200px;
+				border-radius: 50%;
+			}
+			.block-title, .profile-name { 
+				font-size: 32px;
+				font-weight: bold;
+			}
+			.block-sub, .profile-quote {
+				font-style: italic;
+				font-size: 16px;
+			}
+			.block ul {
+				margin: 0;
+				text-align: left;
+			}
+			.iframe-wrapper {
+				position: relative;
+				padding-bottom: 52.5%;
+				height: 0;
+				margin: auto;
+				width: 70%;
+			}
+			iframe {
+				margin: auto;
+				position: absolute;
+				top: 0; 
+				left: 0;
+				width: 100%;
+				height: 100%;
+				border: 5px solid black;
+			}
+			blockquote {
+				font-style: italic;
+				margin-bottom: 0;
+			}
+			blockquote::before, blockquote::after, .profile-quote::before, .profile-quote::after {
+				content: '"';
+			}
+			.blockquote-attribution {
+				text-align: right;
+				margin-right: 40px;
+			}
+			label {
+				display: block;
+				margin: 10px;
+			}
+			label > span {
+				display: inline-block;
+				text-align: left;
+				vertical-align: middle;
+				margin-right: 10px;
+			}
+			.inline-label {
+				width: 70px;
+			}
+			input, textarea {
+				font-size: 22px;
+				font-family: "Open Sans", sans-serif;
+				padding: 10px;
+				display: inline-block;
+			}
+			textarea {
+				width: 100%;
+				height: 200px;
+			}
+			input[type="submit"] {
+				float: right;
+				margin: 10px;
+				cursor: pointer;
+			}
+			@media only screen and (orientation: landscape) {
+				.slideshow img {
+					height: initial;
+					width: 100vw;
+				}
+			}
+		</style>
+		<title>Sharon Ministries</title>
+		<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<header>
+			<nav>
+				<!--<a href="education.html">Education</a>
+				<a href="who.html">Who We Are</a>
+				<a href="what.html">What We Do</a>-->
+				<a href="https://globalhopeindia.org/give/?i=ag5zfmdoaWRvbmF0aW9uc3IXCxIKSW5kaXZpZHVhbBiAgIDojfe2Cgw&amp;t=ag5zfmdoaWRvbmF0aW9uc3IRCxIEVGVhbRiAgICA5aymCgw&amp;fbclid=IwAR2SJk0IYKb-eUzF9CBdY8dvt5k14DRuXAVKABn_BrJpnJUYhQyUqh2S4C4" target="_blank">Give</a>
+			</nav>
+		</header>
+		<main>
+			<div id="intro">
+				<div id="intro-text">
+					<h1>Sharon Ministires</h1>
+					<p>
+						Serving the Overlooked and Forgotten Children on the Outskirts of Hyderabad, India since 2008.
+					</p>
+				</div>
+				<div class="slideshow">
+					<img class="" src="assets/slideshow-praying.jpg">
+					<img src="assets/slideshow-praying2.jpg" class="">
+					<img src="assets/slideshow-sitting.jpg" class="showing visible">
+					<img src="assets/slideshow-standing.jpg">
+					<img src="assets/slideshow-standing2.jpg">
+				</div>
+			</div>
+			<div id="content">
+				<div class="section">
+					<h2>Ministry Overview</h2>
+					<div class="blocks">
+						<div class="block">
+							<div class="block-title">72</div>
+							Orphans
+						</div>
+						<div class="block">
+							<div class="block-title">9</div>
+							Staff Members
+						</div>
+						<div class="block">
+							<div class="block-title">1</div>
+							Site
+						</div>
+					</div>
+				</div>
+				<div class="section">
+					<h2>What You Should Know About India</h2>
+					<div class="blocks">
+						<div class="block">
+							<div class="block-title">Population</div>
+							1,352,642,280
+							<div class="block-sub">2nd most populous country in the world</div>
+						</div>
+						<div class="block">
+							<div class="block-title">Religion</div>
+							80% Hinduism<br>
+							14% Islam<br>
+							2% Christianity
+						</div>
+						<div class="block">
+							<div class="block-title">Orphans</div>
+							29,600,000
+							<div class="block-sub">as of 2018</div>
+						</div>
+						<div class="block">
+							<div class="block-title">Poverty Rate</div>
+							23%
+							<div class="block-sub">in Hyderabad</div>
+						</div>
+					</div>
+					<div class="iframe-wrapper">
+						<iframe
+							frameborder="0"
+							src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBfk45iNbxkZQ8WGp6PH0fGj0chPYjpJjc&q=Hyderabad, India&zoom=5" allowfullscreen>
+						</iframe>
+					</div>
+				</div>
+				<div class="section">
+					<h2>Directors</h2>
+					<div class="blocks">
+						<div class="profile-block">
+							<img src="assets/placeholder.jpg" alt="Bunty Profile Picture"/>
+							<div class="profile-name">Bunty</div>
+							<div class="profile-position">Director/Founder</div>
+							<div class="profile-quote">Quote</div>
+						</div>
+						<div class="profile-block">
+							<img src="assets/placeholder.jpg" alt="David Grams Profile Picture"/>
+							<div class="profile-name">David Grams</div>
+							<div class="profile-position">Communications/Marketing</div>
+							<div class="profile-quote">Quote</div>
+						</div>
+						<div class="profile-block">
+							<img src="assets/placeholder.jpg" alt="Matt Pfingst Picture"/>
+							<div class="profile-name">Matt Pfingst</div>
+							<div class="profile-position">Communications/Marketing</div>
+							<div class="profile-quote">Quote</div>
+						</div>
+						<div class="profile-block">
+							<img src="assets/placeholder.jpg" alt="Madison Grams Picture"/>
+							<div class="profile-name">Madison Grams</div>
+							<div class="profile-position">Communications Assistant</div>
+							<div class="profile-quote">Quote</div>
+						</div>
+					</div>
+				</div>
+				<div class="section">
+					<h2>Sharon Ministry Provides</h2>
+					<div class="blocks">
+						<div class="block">
+							<div class="block-title">Basic Needs</div>
+							<ul>
+								<li>3 meals a day</li>
+								<li>Orphanage to live in</li>
+								<li>Hygiene products</li>
+								<li>Clothing</li>
+								<li>Shoes</li>
+								<li>Medical care as needed</li>
+							</ul>
+						</div>
+						<div class="block">
+							<div class="block-title">Education</div>
+							<ul>
+								<li>School supplies</li>
+								<li>Tuition for school</li>
+								<li>Computers (limited supply)</li>
+							</ul>
+						</div>
+						<div class="block">
+							<div class="block-title">Discipleship</div>
+							<ul>
+								<li>Daily Devotions</li>
+								<li>Mentorship</li>
+								<li>Daily Prayer</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="section">
+					<h2>Meet the Kids</h2>
+					<div class="blocks">
+						<div class="profile-block">
+							<img src="assets/placeholder.jpg" alt="Child 1 Profile Picture"/>
+							<div class="profile-name">Child 1</div>
+							<div class="profile-position">Age 10</div>
+							<div class="profile-quote">Quote</div>
+						</div>
+						<div class="profile-block">
+							<img src="assets/placeholder.jpg" alt="Child 2 Profile Picture"/>
+							<div class="profile-name">Child 2</div>
+							<div class="profile-position">Age 13</div>
+							<div class="profile-quote">Quote</div>
+						</div>
+						<div class="profile-block">
+							<img src="assets/placeholder.jpg" alt="Child 3 Picture"/>
+							<div class="profile-name">Child 3</div>
+							<div class="profile-position">Age 8</div>
+							<div class="profile-quote">Quote</div>
+						</div>
+						<div class="profile-block">
+							<img src="assets/placeholder.jpg" alt="Child 4 Picture"/>
+							<div class="profile-name">Child 4</div>
+							<div class="profile-position">Age 6</div>
+							<div class="profile-quote">Quote</div>
+						</div>
+					</div>
+				</div>
+				<div class="section">
+					<h2>Goals for 2021</h2>
+					<ul>
+						<li>To see transformation of society by the power of the Gospel</li>
+						<li>To raise funds to...
+							<ul>
+								<li>Improve and maintain buildings</li>
+								<li>Continue providing food, clothing, etc.</li>
+								<li>Give continued access to education</li>
+								<li>Purchase technology to improve online learning due to COVID-19</li>
+								<li>Provide medical care</li>
+							</ul>
+						</li>
+						<li>To bring more children to know Christ</li>
+					</ul>
+				</div>
+				<div class="section">
+					<h2>How Can I Help?</h2>
+					<div class="blocks">
+						<div class="block">
+							<div class="block-title">Sponsor a Child</div>
+						</div>
+						<div class="block">
+							<div class="block-title">Give</div>
+						</div>
+						<div class="block">
+							<div class="block-title">Pray</div>
+						</div>
+					</div>
+					<blockquote>Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God's will is - his good, pleasing, and perfect will.</blockquote>
+					<div class="blockquote-attribution">-Romans 12:2</div>
+				</div>
+				<div class="section">
+					<h2>Contact</h2>
+					<form>
+						<label for="name"><span class="inline-label">Name: </span><input type="text" required id="name"/></label>
+						<label for="email"><span class="inline-label">Email: </span><input type="text" required id="email"/></label>
+						<label for="message"><span>Message: </span><textarea required id="message"></textarea></label>
+						<input type="submit" value="Submit"/>
+					</form>
+				</div>
+			</div>
+		</main>
+		<script>
+			function changeSlide(places) {
+				var images = document.querySelectorAll(".slideshow img");
+				var showing = document.querySelector(".slideshow img.showing");
+				var index = Array.from(images).indexOf(showing);
+				index += places;
+				index = index % images.length;
+				showing.classList.remove("visible");
+				setTimeout( function() {
+					showing.classList.remove("showing");
+				}, 1000 );
+				images[index].classList.add("showing");
+				var height = window.innerHeight * 0.9; // match the css
+				if( images[index].clientHeight < height ) {
+					var multiplier = height / images[index].clientHeight;
+					images[index].setAttribute("style","width:"+(100*multiplier)+"vw");
+				}
+				setTimeout( function() {
+					images[index].classList.add("visible");
+				}, 0 );
+			}	
+			var slideInterval;
+			function setSlideInterval() {
+				clearInterval(slideInterval);
+				slideInterval = setInterval( function() {
+					changeSlide(1);
+				}, 10000 );
+			}
+			setSlideInterval();
+			document.querySelector(".slideshow").onclick = function() {
+				changeSlide(1);
+				setSlideInterval();
+			};
+			function fillScreen() {
+				var images = document.querySelectorAll(".slideshow img");
+				for( var i=0; i<images.length; i++ ) {
+					images[i].removeAttribute("style");
+				}
+			}
+			window.onresize = fillScreen;
+		</script>	
+	</body>
+</html>
