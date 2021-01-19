@@ -1,6 +1,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<style>
 			body {
 				margin: 0;
@@ -73,13 +74,13 @@
 				font-size: 60px;
 				text-transform: uppercase;
 				letter-spacing: 4px;
-				margin: 5px 0;
+				margin: 5px 20px;
 			}
 			#intro-text > p {
 				font-size: 24px;
 				border-radius: 10px;
 				font-weight: bold;
-				margin: 5px 0;
+				margin: 5px 20px;
 				font-style: italic;
 			}
 			h2 {
@@ -132,6 +133,7 @@
 				height: 0;
 				margin: auto;
 				width: 70%;
+				margin-bottom: 40px;
 			}
 			iframe {
 				margin: auto;
@@ -171,6 +173,7 @@
 				font-family: "Open Sans", sans-serif;
 				padding: 10px;
 				display: inline-block;
+				max-width: 100%;
 			}
 			textarea {
 				width: 100%;
@@ -185,6 +188,41 @@
 				.slideshow img {
 					height: initial;
 					width: 100vw;
+				}
+			}
+			@media only screen and (max-width: 1100px) {
+				.blocks {
+					flex-wrap: wrap;
+					justify-content: space-around;
+				}
+				.block, .profile-block {
+					width: calc(50% - 40px);
+				}
+				.block:not(:first-child):not(:nth-child(2)), .profile-block:not(:first-child):not(:nth-child(2)) {
+					margin-top: 0;
+				}
+			}
+			@media only screen and (max-width: 900px) {
+				h1 {
+					margin-top: 55px !important;
+					font-size: 48px !important;
+				}
+			}
+			@media only screen and (max-width: 700px) {
+				.block, .profile-block {
+					width: calc(100% - 40px);
+				}
+				.block:not(:first-child), .profile-block:not(:first-child) {
+					margin-top: 0;
+				}
+				.iframe-wrapper {
+					width: 100vw;
+					margin-left: -20px;
+					padding-bottom: 100%;
+				}
+				iframe {
+					border-left: none;
+					border-right: none;
 				}
 			}
 		</style>
@@ -272,19 +310,19 @@
 						<div class="profile-block">
 							<img src="assets/placeholder.jpg" alt="Bunty Profile Picture"/>
 							<div class="profile-name">Bunty</div>
-							<div class="profile-position">Director/Founder</div>
+							<div class="profile-position">Director & Founder</div>
 							<div class="profile-quote">Quote</div>
 						</div>
 						<div class="profile-block">
 							<img src="assets/placeholder.jpg" alt="David Grams Profile Picture"/>
 							<div class="profile-name">David Grams</div>
-							<div class="profile-position">Communications/Marketing</div>
+							<div class="profile-position">Communications & Marketing</div>
 							<div class="profile-quote">Quote</div>
 						</div>
 						<div class="profile-block">
 							<img src="assets/placeholder.jpg" alt="Matt Pfingst Picture"/>
 							<div class="profile-name">Matt Pfingst</div>
-							<div class="profile-position">Communications/Marketing</div>
+							<div class="profile-position">Communications & Marketing</div>
 							<div class="profile-quote">Quote</div>
 						</div>
 						<div class="profile-block">
@@ -411,11 +449,7 @@
 					showing.classList.remove("showing");
 				}, 1000 );
 				images[index].classList.add("showing");
-				var height = window.innerHeight * 0.9; // match the css
-				if( images[index].clientHeight < height ) {
-					var multiplier = height / images[index].clientHeight;
-					images[index].setAttribute("style","width:"+(100*multiplier)+"vw");
-				}
+				fillScreen(images[index], index);
 				setTimeout( function() {
 					images[index].classList.add("visible");
 				}, 0 );
@@ -432,13 +466,28 @@
 				changeSlide(1);
 				setSlideInterval();
 			};
-			function fillScreen() {
+			function fillScreen(image, index) {
+				var images = document.querySelectorAll(".slideshow img");
+				var index = index ? index : Array.from(images).indexOf(image);
+				var height = window.innerHeight * 0.9; // match the css - the height should be 90vh
+				// since the images are landscape, when we are portrait and the image is 100vh, we know they will cover
+				// however, when we are landscape, we might be more widescreen than the images, and we have to make them taller
+				// after we set to 100vw.
+				if( images[index].clientHeight < height && !images[index].getAttribute("style") ) {
+					var multiplier = height / images[index].clientHeight;
+					images[index].setAttribute("style","width:"+(100*multiplier)+"vw");
+				}
+			}
+			function clearAndFillScreen() {
 				var images = document.querySelectorAll(".slideshow img");
 				for( var i=0; i<images.length; i++ ) {
 					images[i].removeAttribute("style");
 				}
+				var showing = document.querySelector(".slideshow img.showing");
+				fillScreen(showing);
 			}
-			window.onresize = fillScreen;
+			window.onresize = clearAndFillScreen;
+			clearAndFillScreen();
 		</script>	
 	</body>
 </html>
